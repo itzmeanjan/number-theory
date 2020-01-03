@@ -1,2 +1,2 @@
 # number-theory
-Programmatic implementation of Number Theory :wink:
+Programmatically implementing some Number Theory things :wink:
