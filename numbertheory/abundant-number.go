@@ -1,7 +1,5 @@
 package numbertheory
 
-import "github.com/itzmeanjan/number-theory/factorize"
-
 // IsAbundantNumber - Fetches all proper factors of a number & finds sum of them
 // equating that sum with number, gets us whether its Deficient, Abundant or Perfect Number
 //
@@ -11,7 +9,7 @@ import "github.com/itzmeanjan/number-theory/factorize"
 //
 // if sum is equal to actual number, it's perfect number
 func IsAbundantNumber(num int) bool {
-	factors := factorize.Factorize(num)
+	factors := Factorize(num)
 	sum := 0
 	for i := 0; i < len(factors); i++ {
 		sum += factors[i]

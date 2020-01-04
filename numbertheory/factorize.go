@@ -1,4 +1,4 @@
-package factorize
+package numbertheory
 
 // Factorize - Returns a slice holding all factors of an integer ( passed as argument ),
 // except the number itself
