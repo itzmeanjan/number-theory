@@ -1,7 +1,5 @@
 package numbertheory
 
-import "fmt"
-
 // GetTriangularNumber - returns triangular number by position ( in series )
 func GetTriangularNumber(pos int) int {
 	return pos * (pos + 1) / 2
@@ -82,7 +80,6 @@ func GetFirstXTriangularSquareNumbers(x int) []int {
 		triIndex++
 		if IsSquareNumber(tmp) {
 			buffer[i] = tmp
-			fmt.Println(tmp)
 			i++
 		}
 	}
@@ -151,4 +148,67 @@ func GetTriangularNumberWhichAreSumOfTriangularNumbers(n int) []SpecialTriangula
 		}
 	}
 	return filteredTriNumArr
+}
+
+// TriangularNumberPair - ...
+type TriangularNumberPair struct {
+	One int
+	Two int
+}
+
+// findPossibleTriNumComb - Finds out possible triangular number pair
+// which satisfies following condition :
+//
+// If a & b are two triangular numbers such that a != b & b > a
+// then b + a & b - a, need to be triangular too
+//
+// that what this function tries to find out from a slice of triangular numbers
+func findPossibleTriNumComb(triNumArr []int) []TriangularNumberPair {
+	filteredTriNumPair := []TriangularNumberPair{}
+	for i := 0; i < len(triNumArr); i++ {
+		for j := i + 1; j < len(triNumArr); j++ {
+			sum := triNumArr[j] + triNumArr[i]
+			diff := triNumArr[j] - triNumArr[i]
+			if IsTriangularNumber(sum) && IsTriangularNumber(diff) {
+				filteredTriNumPair = append(filteredTriNumPair, TriangularNumberPair{triNumArr[i], triNumArr[j]})
+			}
+		}
+	}
+	return filteredTriNumPair
+}
+
+// putNonDuplicates - Given two slices, we'll return only a
+// single slice ( first one as per this implementation )
+// in which all values of second slice will be appended, if and only if
+// that certain value is not already present in first slice
+func putNonDuplicates(mainArr []TriangularNumberPair, auxArr []TriangularNumberPair, fillInit int) int {
+	checkUpto := fillInit
+	for i := 0; i < len(auxArr); i++ {
+		found := false
+		for j := 0; j < checkUpto; j++ {
+			if auxArr[i] == mainArr[j] {
+				found = true
+				break
+			}
+		}
+		if !found {
+			mainArr[fillInit] = auxArr[i]
+			fillInit++
+		}
+	}
+	return fillInit
+}
+
+// GetXTriangularNumbersWhichAreSumAndDiffOfTwoOtherTriangularNumbers - ...
+func GetXTriangularNumbersWhichAreSumAndDiffOfTwoOtherTriangularNumbers(x int) []TriangularNumberPair {
+	triNumPairArr := make([]TriangularNumberPair, x)
+	generatedTriNumArr := []int{}
+	curTriNumIdx := 1
+	foundTriNumPairPos := 0
+	for foundTriNumPairPos < cap(triNumPairArr) {
+		generatedTriNumArr = append(generatedTriNumArr, GetTriangularNumber(curTriNumIdx))
+		curTriNumIdx++
+		foundTriNumPairPos = putNonDuplicates(triNumPairArr, findPossibleTriNumComb(generatedTriNumArr), foundTriNumPairPos)
+	}
+	return triNumPairArr
 }
