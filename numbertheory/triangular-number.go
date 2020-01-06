@@ -150,7 +150,9 @@ func GetTriangularNumberWhichAreSumOfTriangularNumbers(n int) []SpecialTriangula
 	return filteredTriNumArr
 }
 
-// TriangularNumberPair - ...
+// TriangularNumberPair - Holds a pair of Triangular Numbers
+// such that when `One` & `Two` added and substracted
+// in both cases, they will be Triangular
 type TriangularNumberPair struct {
 	One int
 	Two int
@@ -199,7 +201,8 @@ func putNonDuplicates(mainArr []TriangularNumberPair, auxArr []TriangularNumberP
 	return fillInit
 }
 
-// GetXTriangularNumbersWhichAreSumAndDiffOfTwoOtherTriangularNumbers - ...
+// GetXTriangularNumbersWhichAreSumAndDiffOfTwoOtherTriangularNumbers - Get requested number of Triangular Number
+// pairs, such that when added & substracted, in both cases, they'll be Triangular
 func GetXTriangularNumbersWhichAreSumAndDiffOfTwoOtherTriangularNumbers(x int) []TriangularNumberPair {
 	triNumPairArr := make([]TriangularNumberPair, x)
 	generatedTriNumArr := []int{}
