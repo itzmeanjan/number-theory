@@ -9,15 +9,11 @@ package numbertheory
 // but if that sum crosses target number, we'll simply get out of that loop
 func IsSquareNumber(num int) bool {
 	sum := 0
-	success := false
 	for i := 1; i < num; i += 2 {
 		sum += i
-		if sum == num {
-			success = true
-			break
-		} else if sum > num {
+		if sum == num || sum > num {
 			break
 		}
 	}
-	return success
+	return sum == num
 }

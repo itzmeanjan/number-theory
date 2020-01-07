@@ -17,18 +17,25 @@ Recently I stumbled upon a Number-Thoery book, which grabbed my interest pretty 
 - Find _X_-th Triangular Number _( formula based, iterative & recursive )_
 - Check whether a given number is Triangular or not
 - Verify that sum of reciprocals of first _N_ Triangular Numbers, tends to _2_, as _N_ increases
+- Verify that, after 3 next _X_, triangular numbers are Composite _( non-prime )_
 - Finding first _X_ Triangular Numbers, which are Square too
 - Verify whether sum & difference of two distinct Triangular Numbers is Triangular or not
-- Get all Triangular Numbers ( from first _X_, where _X+ denotes position of Triangular Number in Series ), which can be represented as a sum of two distinct Triangular Numbers
+- Get all Triangular Numbers ( from first _X_, where _X_ denotes position of Triangular Number in Series ), which can be represented as a sum of two distinct Triangular Numbers
 - Get _X_ Triangular Number Pairs, such that when added & substracted, both of them will be Triangular
 
 ### Square Numbers
 
+- Return _N_-th Square Number
 - Checking whether a given number is Square or not
 
-### Classify Number
+### Oblong Number
 
-Given a number, classify it into any of one category among three below categories.
+- Return _N_-th oblong number
+- Check whether a given number is Oblong or not
+
+### Classify given number _N_
+
+- Given a number _N_, classify it into any of one category among three below categories.
 
 #### Deficient Numbers
 

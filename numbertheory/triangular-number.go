@@ -56,17 +56,13 @@ func IsTriangularNumber(num int) bool {
 		return true
 	}
 	sum := 0
-	success := false
 	for i := 1; i < num; i++ {
 		sum += i
-		if sum == num {
-			success = true
-			break
-		} else if sum > num {
+		if sum == num || sum > num {
 			break
 		}
 	}
-	return success
+	return sum == num
 }
 
 // GetFirstXTriangularSquareNumbers - Returns an slice holding
@@ -214,4 +210,24 @@ func GetXTriangularNumbersWhichAreSumAndDiffOfTwoOtherTriangularNumbers(x int) [
 		foundTriNumPairPos = putNonDuplicates(triNumPairArr, findPossibleTriNumComb(generatedTriNumArr), foundTriNumPairPos)
 	}
 	return triNumPairArr
+}
+
+// After3NextXTriangularNumbersComposite - Verify the claim, that
+// after 3, all triangular numbers are Composite i.e. Non-Prime
+//
+// Here you can pass any integer as an argument, for checking
+// the above mentioned claim, for that many number of triangular numbers
+// ( after 3 )
+//
+// well, first two triangular numbers : {1, 3}
+func After3NextXTriangularNumbersComposite(x int) bool {
+	check := true
+	for i := 0; i < x+2; i++ {
+		triNum := GetTriangularNumber(i + 1)
+		if triNum > 3 && IsPrime(triNum) {
+			check = false
+			break
+		}
+	}
+	return check
 }

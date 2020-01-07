@@ -34,9 +34,13 @@ func main() {
 		for _, i := range numbertheory.GetTriangularNumberWhichAreSumOfTriangularNumbers(1000) {
 			fmt.Printf("\t%d -- sum(%d, %d)\n", i.TriNum, i.TriNumOne, i.TriNumTwo)
 		}
+		fmt.Println("\nTriangular Number Pair, which will generate two triangular numbers when added & substracted :")
+		for _, j := range numbertheory.GetXTriangularNumbersWhichAreSumAndDiffOfTwoOtherTriangularNumbers(10) {
+			fmt.Printf("\t - (%d, %d)\n", j.One, j.Two)
+		}
+		fmt.Printf("Is Prime ( 17289456939874 ) : %v\t%v\n", numbertheory.IsPrime(17289456939874), time.Now().Sub(start))
+		fmt.Printf("\nPrimes under 1000 : %v\n", numbertheory.GeneratePrimesUnderX(1000))
 	*/
-	fmt.Println("\nTriangular Number Pair, which will generate two triangular numbers when added & substracted :")
-	for _, j := range numbertheory.GetXTriangularNumbersWhichAreSumAndDiffOfTwoOtherTriangularNumbers(10) {
-		fmt.Printf("\t - (%d, %d)\n", j.One, j.Two)
-	}
+	fmt.Printf("\n`After 3, next 1000 Triangular Numbers are Compostite` -- %v\n", numbertheory.After3NextXTriangularNumbersComposite(1000))
+	fmt.Printf("\nOblong Number (10) = %d\nIs Oblong (110) = %v\n", numbertheory.GetOblongNumber(10), numbertheory.IsOblongNumber(110))
 }
