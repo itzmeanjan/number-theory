@@ -1,5 +1,7 @@
 package numbertheory
 
+import "fmt"
+
 // GetTriangularNumber - returns triangular number by position ( in series )
 func GetTriangularNumber(pos int) int {
 	return pos * (pos + 1) / 2
@@ -230,4 +232,86 @@ func After3NextXTriangularNumbersComposite(x int) bool {
 		}
 	}
 	return check
+}
+
+// GenerateTriangularNumbersUnderX - Generates a slice of
+// triangular numbers under `X`
+func GenerateTriangularNumbersUnderX(x int) []int {
+	buffer := make([]int, 1)
+	buffer[0] = 1
+	i := 2
+	for {
+		if tmp := GetTriangularNumber(i); tmp > 1000 {
+			break
+		} else {
+			buffer = append(buffer, tmp)
+		}
+		i++
+	}
+	return buffer
+}
+
+// TriangularNumberComb - A custom type designed for holding an integer ( from 1 to 1000 for this implementation )
+// in `Num` field, and three triangular numbers, when summed will evaluate to `Num`.
+// If some number can be represented as combination of <3 triangular numbers, then this some `TX`
+// field may be having default value `0`
+type TriangularNumberComb struct {
+	Num int
+	T1  int
+	T2  int
+	T3  int
+}
+
+// String representation of above defined data type
+func (tri TriangularNumberComb) String() string {
+	return fmt.Sprintf("%d = ( %d + %d +%d )", tri.Num, tri.T1, tri.T2, tri.T3)
+}
+
+// RepresentAsSumOfTrianagularNumbers - Represents all integers
+// from 1 to 1000, as sum of <=3 triangular numbers
+func RepresentAsSumOfTrianagularNumbers() [1000]TriangularNumberComb {
+	triNumComb := [1000]TriangularNumberComb{}
+	buffer := GenerateTriangularNumbersUnderX(1000)
+	represent := func(x int) []int {
+		comb := make([]int, 3)
+		found := false
+		for i := 0; i < len(buffer); i++ {
+			for j := i; j < len(buffer); j++ {
+				for k := j; k < len(buffer); k++ {
+					if buffer[i]+buffer[j]+buffer[k] == x {
+						comb[0] = buffer[i]
+						comb[1] = buffer[j]
+						comb[2] = buffer[k]
+						found = true
+						break
+					}
+				}
+				if found {
+					break
+				} else {
+					if buffer[i]+buffer[j] == x {
+						comb[0] = buffer[i]
+						comb[1] = buffer[j]
+						found = true
+						break
+					}
+				}
+			}
+			if found {
+				break
+			} else {
+				if buffer[i] == x {
+					comb[0] = buffer[i]
+					found = true
+					break
+				}
+			}
+		}
+		return comb
+	}
+	for i := 1; i < 1001; i++ {
+		tmp := represent(i)
+		triNumComb[i-1] = TriangularNumberComb{i, tmp[0], tmp[1], tmp[2]}
+	}
+	return triNumComb
 }

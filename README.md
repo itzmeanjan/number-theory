@@ -22,6 +22,7 @@ Recently I stumbled upon a Number-Thoery book, which grabbed my interest pretty 
 - Verify whether sum & difference of two distinct Triangular Numbers is Triangular or not
 - Get all Triangular Numbers ( from first _X_, where _X_ denotes position of Triangular Number in Series ), which can be represented as a sum of two distinct Triangular Numbers
 - Get _X_ Triangular Number Pairs, such that when added & substracted, both of them will be Triangular
+- Represent all +ve integers under 1001, as sum of _<= 3_ Triangular Numbers
 
 ### Square Numbers
 
